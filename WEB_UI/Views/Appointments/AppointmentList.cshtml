@@ -1,0 +1,22 @@
+﻿@section Scripts {
+    <!--Importar los scripts necesarios-->
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script src="~/js/pages/appointments/griddefinition.js"></script>
+    <script src="~/js/pages/appointments/appointmentlist.js"></script>
+
+}
+
+<div>
+    <div>
+        <label for="txtPacientData">Paciente:</label>
+        <input id="txtPacientData" type="text" readonly="readonly" class="form-control" />
+    </div>
+</div>
+
+<div class="text-center">
+    <h4 class="display-4">Citas</h4>
+</div>
+<div class="form-group">
+    <button type="button" class="btn btn-success" id="btnCreate">Crear cita</button>
+</div>
+<div id="myGridAppointments" style="height: 300px; width:70%;" class="ag-theme-alpine"></div>

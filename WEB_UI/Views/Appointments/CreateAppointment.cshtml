@@ -1,0 +1,29 @@
+﻿@section Scripts {
+    <script src="~/js/pages/appointments/createappointment.js"></script>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Nueva Cita</h1>
+</div>
+<div class="form-group">
+    <form id="frmArticles">
+        <div>
+            <label for="txtTitle">Nombre:</label>
+            <input id="txtTitle" type="text" class="form-control" />
+        </div>
+        <div>
+            <label for="ddSpeciality">Especialidad:</label>
+            <select id="ddSpeciality" class="form-select">
+            </select>
+        </div>
+        <div>
+            <label for="txtDate">Fecha:</label>
+            <input id="txtDate" type="datetime-local" class="form-control" />
+        </div>
+        <p />
+        <div class="form-group">
+            <button type="button" class="btn btn-success" id="btnCreate">Enviar</button>
+            <button type="reset" class="btn btn-info" id="btnReset">Limpiar</button>
+        </div>
+    </form>
+</div>
