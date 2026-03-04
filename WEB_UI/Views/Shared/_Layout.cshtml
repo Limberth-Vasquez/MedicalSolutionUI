@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor Accesor;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,9 +31,31 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="PatientList">Pacientes</a>
-                        </li>
+                        @if (Accesor.HttpContext.Session.GetString("user") != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="PatientList">Pacientes</a>
+                            </li>
+                        }
+                    </ul>
+
+                    <ul style="text-align:right" class="navbar-nav">
+                        @if (Accesor.HttpContext.Session.GetString("user") == null)
+                        {
+                            <li>
+                                <a style="color:blue" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            var userInfo = "Bienvenido: " + Accesor.HttpContext.Session.GetString("user") + " ";
+                            <li style="text-align: right; color:blue;" class="nav-item">
+                                @userInfo
+                            </li>
+                            <li style="text-align: right; color:blue;" class="nav-item">
+                                <a style="color:blue" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

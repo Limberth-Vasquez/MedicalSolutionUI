@@ -1,0 +1,37 @@
+﻿@model User
+@{
+    ViewBag.Title = "";
+    Layout = "../Shared/_Layout_Login.cshtml";
+}
+@section Scripts {
+    <script src="~/js/pages/login/login.js"></script>
+}
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    <h2>LIMBERTH-CLINIC Login</h2>
+
+    <div>
+        @if (ViewBag.Message != null)
+        {
+            <div id="validations" style="color:red; display:none">@ViewBag.Message</div>
+        }
+    </div>
+
+    <table>
+        <tr>
+            <td>@Html.LabelFor(u => u.UserName, "User Id:")</td>
+            <td>@Html.TextBoxFor(u => u.UserName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(u => u.Password, "Password:")</td>
+            <td>@Html.PasswordFor(u => u.Password)</td>
+        </tr>
+        <tr>
+            <td>
+                <button id="btnLogin" type="submit" class="btn btn-success">Login</button>
+            </td>
+        </tr>
+    </table>
+}
+
