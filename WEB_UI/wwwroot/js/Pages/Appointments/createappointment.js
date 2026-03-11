@@ -1,5 +1,4 @@
-﻿function CreateAppointment()
-{
+﻿function CreateAppointment() {
     this.InitView = () => {
         $('#btnCreate').click(() => {
             let view = new CreateAppointment();
@@ -58,6 +57,10 @@
                     text: response.data,
                     timer: 2000
                 }).then(() => {
+                    //aca notificamos por correo al paciente que se ha creado la cita
+                    let view = new CreateAppointment();
+                    view.CommunicatePatient();
+
                     window.location = '/Appointments/AppointmentList';
                 });
             } else {
@@ -75,6 +78,19 @@
                 title: 'Error al crear cita',
                 text: 'Hubo un error, contacte al administrador '
             });
+        });
+    };
+
+    this.CommunicatePatient = () => {
+        $.ajax({
+            url: API_URL_BASE + "/api/Communications/EnviarCorreo?emailAddress=" + "lvasquezq@ucenfotec.ac.cr", //sessionStorage["patientEmail"],
+            method: "GET",
+            dataType: "json",
+            contentType: "application/json;chartset=utf-8"
+        }).done((response) => {
+            console.log("Correo enviado", response);
+        }).fail((error) => {
+            console.error("Error del ajax", error);
         });
     };
 }
